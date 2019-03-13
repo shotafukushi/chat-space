@@ -33,3 +33,34 @@ Things you may want to cover:
 ### Association
 - belongs_to :group
 - belongs_to :user
+
+## usersテーブル
+
+|Column|type|option|
+|:-----------|------------:|:------------:|
+|id|integer|null:false,foreign_key: true|
+|group_id|integer|null:false,foreign_key: true|
+
+### Association
+- has_many :groups, through: :members
+- has_many :chats
+
+## groupsテーブル
+
+|Column|type|option|
+|:-----------|------------:|:------------:|
+|id|integer|null:false,foreign_key: true|
+|group_id|integer|null:false,foreign_key: true|
+
+### Association
+- has_many :users, through: :members
+
+## chatsテーブル
+
+|Column|type|option|
+|:-----------|------------:|:------------:|
+|id|integer|null:false,foreign_key: true|
+|group_id|integer|null:false,foreign_key: true|
+
+### Association
+- belongs_to :user
