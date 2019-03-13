@@ -24,10 +24,10 @@ Things you may want to cover:
 * ...
 
 ##membersテーブル
-|     Column      |      type      |     option     |
-|:-----------     |----   --------:|  :------------:|
-|user_id          |integer         |null: false, foreign_key: true|
-|group_id         |integer         |null: false, foreign_key: true|
+|Column|type|option|
+|:-----------|------------:|:------------:|
+|user_id|integer|null:false,foreign_key: true|
+|group_id|integer|null:false,foreign_key: true|
 
 ### Association
 - belongs_to :group
