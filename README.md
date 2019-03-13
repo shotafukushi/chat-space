@@ -24,6 +24,7 @@ Things you may want to cover:
 * ...
 
 ##membersテーブル
+
 |Column|type|option|
 |:-----------|------------:|:------------:|
 |user_id|integer|null:false,foreign_key: true|
