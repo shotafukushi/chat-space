@@ -42,6 +42,7 @@ Things you may want to cover:
 |e-mail|text|null:false,unique: true|
 
 ### Association
+- has_many :members
 - has_many :groups, through: :members
 - has_many :messages
 
@@ -53,7 +54,9 @@ Things you may want to cover:
 |user_id|integer|null:false,foreign_key: true|
 
 ### Association
+- has_many :members
 - has_many :users, through: :members
+- has_many :messages,
 
 ## messagesテーブル
 
