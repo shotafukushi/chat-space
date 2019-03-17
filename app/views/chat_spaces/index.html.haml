@@ -22,7 +22,7 @@
                 %a{:href => "/users/1/edit"}
                   %i.fa.fa-cog
         .groups
-          %a{:href => "/groups/741/messages"}
+          = link_to "/groups/741/messages" do
             .group
               %p.group__group-name aaaa
               %p.group__latest-message aaaa
@@ -34,7 +34,7 @@
               Member：
               %li.main-header__left-box__member-list__member fukushi
               %li.main-header__left-box__member-list__member shouta
-          %a{:href => "/groups/1/edit"}
+          = link_to "/groups/1/edit" do
             .main-header__edit-btn Edit
         .messages
           .message{"data-message_id" => "1"}
