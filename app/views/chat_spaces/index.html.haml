@@ -1,12 +1,9 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
     %title ChatSpaceSample
-    / %meta{:content => "authenticity_token", :name => "csrf-param"}/
-    / %meta{:content => "lD5FYM186ZBRudomaPwYnKExhJSOvG7uArS+38oHzi74r1Ucm3VAb8ImSIELkGOef9GNT3diKN0bWP6QgxBQFw==", :name => "csrf-token"}/
-    %link{ :href => "assets/stylesheets/css.scss"}/
-    / %script{"data-turbolinks-track" => "reload", :src => "/assets/application-6b92f7bcf94deede5afc9ab209237e3423679aa989ffa2c7a102c62118315e23.js"}
+    %link{ href: "assets/stylesheets/css.scss"}/
   %body
     .flash-box
     .wrapper
@@ -16,10 +13,10 @@
             %p.side-header__box__user-name testtest
             %ul.side-header__box__menu
               %li.side-header__box__menu__edit-user
-                %a{:href => "/groups/new"}
+                = link_to "/groups/new" do
                   %i.fa.fa-edit
               %li.side-header__box__menu__new-group
-                %a{:href => "/users/1/edit"}
+                = link_to "/users/1/edit" do
                   %i.fa.fa-cog
         .groups
           = link_to "/groups/741/messages" do
@@ -29,7 +26,7 @@
       .chat-main
         .main-header
           .main-header__left-box
-            %h2.main-header__left-box__current-group{"data-group_id" => "1"} テストと
+            %h2.main-header__left-box__current-group{"data-group_id": "1"} テストと
             %ul.main-header__left-box__member-list
               Member：
               %li.main-header__left-box__member-list__member fukushi
@@ -37,48 +34,48 @@
           = link_to "/groups/1/edit" do
             .main-header__edit-btn Edit
         .messages
-          .message{"data-message_id" => "1"}
+          .message{"data-message_id": "1"}
             .message__upper-info
               %p.message__upper-info__talker kapibara
               %p.message__upper-info__date 2019/01/30(Wed) 21:50:07
             %p.message__text hello
-          .message{"data-message_id" => "2"}
+          .message{"data-message_id": "2"}
             .message__upper-info
               %p.message__upper-info__talker kapibara
               %p.message__upper-info__date 2019/01/30(Wed) 21:50:39
             %p.message__text hoge
-          .message{"data-message_id" => "3"}
+          .message{"data-message_id": "3"}
             .message__upper-info
               %p.message__upper-info__talker kapibara
               %p.message__upper-info__date 2019/01/30(Wed) 21:50:51
             %p.message__text heyhey
-          .message{"data-message_id" => "4"}
+          .message{"data-message_id": "4"}
             .message__upper-info
               %p.message__upper-info__talker kapibara
               %p.message__upper-info__date 2019/01/30(Wed) 21:51:35
             %p.message__text yaaaaaaaa
-          .message{"data-message_id" => "5"}
+          .message{"data-message_id": "5"}
             .message__upper-info
               %p.message__upper-info__talker kazyam
               %p.message__upper-info__date 2019/02/11(Mon) 12:23:26
             %p.message__text hello
-          .message{"data-message_id" => "6"}
+          .message{"data-message_id": "6"}
             .message__upper-info
               %p.message__upper-info__talker kazyam
               %p.message__upper-info__date 2019/03/04(Mon) 16:20:41
             %p.message__text aaaaa
-          .message{"data-message_id" => "7"}
+          .message{"data-message_id": "7"}
             .message__upper-info
               %p.message__upper-info__talker kazyam
               %p.message__upper-info__date 2019/03/04(Mon) 16:20:48
             %p.message__text bbbb
         .form
-          %form#new_message.new_message{"accept-charset" => "UTF-8", :action => "/groups/1/messages", :enctype => "multipart/form-data", :method => "post"}
-            %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-            %input{:name => "authenticity_token", :type => "hidden", :value => "f5E0RSPVRRrmnIy5hL66EXtFxUjdjvG6iK3qXUgQJiar5+JmpuCarheGYY8p3528nkQ84r9IpfKw8YOH5PU6fg=="}/
+          %form#new_message.new_message{"accept-charset": "UTF-8", action: "/groups/1/messages", enctype: "multipart/form-data", method: "post"}
+            %input{name: "utf8", type: "hidden", value: "✓"}/
+            %input{name: "authenticity_token", type: "hidden", value: ""}/
             .input-box
-              %input#message_content.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
-              %label.input-box__image{:for => "message_image"}
+              %input#message_content.input-box__text{name: "message[content]", placeholder: "type a message", type: "text"}/
+              %label.input-box__image{for: "message_image"}
                 %i.fa.fa-image
-                %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}/
-            %input.submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+                %input#message_image.input-box__image__file{name: "message[image]", type: "file"}/
+            %input.submit-btn{"data-disable-with": "Send", name: "commit", type: "submit", value: "Send"}/
