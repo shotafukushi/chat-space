@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: "chat_spaces#index"
   resource :chat_spaces
 
