@@ -1,28 +1,21 @@
-.side-bar
-  .header
-    %h3.headder__name
-      = current_user.name
-    %ul.header__lists
-      %li.list
-        = link_to do
-          = fa_icon 'pencil-square-o' , class: 'icon'
-      %li.list
-        = link_to edit_user_path(currnet_user) do
-          = fa_icon 'cog' , class: 'icon'
-
-  .groups
-    .group
-      .group__name
-        グループ名
-      .group__message
-        新着メッセージ
-    .group
-      .group__name
-        グループ名
-      .group__message
-        新着メッセージ
-    .group
-      .group__name
-        グループ名
-      .group__message
-        新着メッセージ
+.notice
+.contents
+  .sidebar
+    .sidebar__top
+      %h1.sidebar__top__name
+        = current_user.name
+      %ul.lists
+        %li.list
+          = link_to new_group_path do
+            = fa_icon 'pencil-square-o', class: 'icon'
+        %li.list
+          = link_to edit_user_path(current_user) do
+            = fa_icon 'cog', class: 'icon'
+            %br
+    .sidebar__bottom
+      - current_user.groups.each do |group|
+        = link_to group_messages_path(group) do
+          .name
+            = group.name
+          .message
+            メッセージはありません
