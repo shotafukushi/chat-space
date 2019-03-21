@@ -1,0 +1,37 @@
+.notice
+.contents
+  .sidebar
+    .sidebar__top
+      %h1.sidebar__top__name
+        = current_user.name
+      %ul.lists
+        %li.list
+          = link_to new_group_path do
+            = fa_icon 'pencil-square-o', class: 'icon'
+        %li.list
+          = link_to edit_user_path(current_user) do
+            = fa_icon 'cog', class: 'icon'
+            %br
+    .sidebar__bottom
+      = render "groups/group"
+  .chatbar
+    .chatbar__top
+      .chatbar__top__left
+        .chatbar__top__left__name
+          = @group.name
+        .chatbar__top__left__member
+          = current_user.name
+      .chatbar__top__right
+        = link_to new_group_path do
+          %button
+            Edit
+    .messages
+      = render @messages
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          //= f.label :imaget, class: 'form__mask__image' do
+          //   = fa_icon 'picture-o', class: 'icon'
+          // = f.file_field :imaget, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'

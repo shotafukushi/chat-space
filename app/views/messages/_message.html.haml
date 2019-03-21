@@ -1,0 +1,12 @@
+.message{ 'data-message-id': message.id }
+  .upper-message
+    .name
+      = message.user.name
+    .time
+      = message.created_at.strftime("%Y/%m/%d %H:%M")
+  .lower-message
+    - if message.content.present?
+      %p.lower-message__content
+        = message.content
+    = imaget_tag message.imaget.url, class: 'lower-message__imaget' if message.imaget.present?
+

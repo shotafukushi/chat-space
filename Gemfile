@@ -58,3 +58,7 @@ gem 'sprockets', '3.7.2'
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'font-awesome-rails'
+
+group :development do
+  gem 'devise'
+end
