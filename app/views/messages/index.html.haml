@@ -1,81 +1,37 @@
-!!!
-%html
-  %head
-    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
-    %title ChatSpaceSample
-    %link{ href: "assets/stylesheets/css.scss"}/
-  %body
-    .flash-box
-    .wrapper
-      .chat-side
-        .side-header
-          .side-header__box
-            %p.side-header__box__user-name testtest
-            %ul.side-header__box__menu
-              %li.side-header__box__menu__edit-user
-                = link_to "/groups/new" do
-                  %i.fa.fa-edit
-              %li.side-header__box__menu__new-group
-                = link_to "/users/1/edit" do
-                  %i.fa.fa-cog
-        .groups
-          = link_to "/groups/741/messages" do
-            .group
-              %p.group__group-name aaaa
-              %p.group__latest-message aaaa
-      .chat-main
-        .main-header
-          .main-header__left-box
-            %h2.main-header__left-box__current-group{"data-group_id": "1"} テストと
-            %ul.main-header__left-box__member-list
-              Member：
-              %li.main-header__left-box__member-list__member fukushi
-              %li.main-header__left-box__member-list__member shouta
-          = link_to "/groups/1/edit" do
-            .main-header__edit-btn Edit
-        .messages
-          .message{"data-message_id": "1"}
-            .message__upper-info
-              %p.message__upper-info__talker kapibara
-              %p.message__upper-info__date 2019/01/30(Wed) 21:50:07
-            %p.message__text hello
-          .message{"data-message_id": "2"}
-            .message__upper-info
-              %p.message__upper-info__talker kapibara
-              %p.message__upper-info__date 2019/01/30(Wed) 21:50:39
-            %p.message__text hoge
-          .message{"data-message_id": "3"}
-            .message__upper-info
-              %p.message__upper-info__talker kapibara
-              %p.message__upper-info__date 2019/01/30(Wed) 21:50:51
-            %p.message__text heyhey
-          .message{"data-message_id": "4"}
-            .message__upper-info
-              %p.message__upper-info__talker kapibara
-              %p.message__upper-info__date 2019/01/30(Wed) 21:51:35
-            %p.message__text yaaaaaaaa
-          .message{"data-message_id": "5"}
-            .message__upper-info
-              %p.message__upper-info__talker kazyam
-              %p.message__upper-info__date 2019/02/11(Mon) 12:23:26
-            %p.message__text hello
-          .message{"data-message_id": "6"}
-            .message__upper-info
-              %p.message__upper-info__talker kazyam
-              %p.message__upper-info__date 2019/03/04(Mon) 16:20:41
-            %p.message__text aaaaa
-          .message{"data-message_id": "7"}
-            .message__upper-info
-              %p.message__upper-info__talker kazyam
-              %p.message__upper-info__date 2019/03/04(Mon) 16:20:48
-            %p.message__text bbbb
-        .form
-          %form#new_message.new_message{"accept-charset": "UTF-8", action: "/groups/1/messages", enctype: "multipart/form-data", method: "post"}
-            %input{name: "utf8", type: "hidden", value: "✓"}/
-            %input{name: "authenticity_token", type: "hidden", value: ""}/
-            .input-box
-              %input#message_content.input-box__text{name: "message[content]", placeholder: "type a message", type: "text"}/
-              %label.input-box__image{for: "message_image"}
-                %i.fa.fa-image
-                %input#message_image.input-box__image__file{name: "message[image]", type: "file"}/
-            %input.submit-btn{"data-disable-with": "Send", name: "commit", type: "submit", value: "Send"}/
+.notice
+.contents
+  .sidebar
+    .sidebar__top
+      %h1.sidebar__top__name
+        = current_user.name
+      %ul.lists
+        %li.list
+          = link_to new_group_path do
+            = fa_icon 'pencil-square-o', class: 'icon'
+        %li.list
+          = link_to edit_user_path(current_user) do
+            = fa_icon 'cog', class: 'icon'
+            %br
+    .sidebar__bottom
+      = render "groups/group"
+  .chatbar
+    .chatbar__top
+      .chatbar__top__left
+        .chatbar__top__left__name
+          = @group.name
+        .chatbar__top__left__member
+          = current_user.name
+      .chatbar__top__right
+        = link_to new_group_path do
+          %button
+            Edit
+    .messages
+      = render @messages
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          //= f.label :imaget, class: 'form__mask__image' do
+          //   = fa_icon 'picture-o', class: 'icon'
+          // = f.file_field :imaget, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
