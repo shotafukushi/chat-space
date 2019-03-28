@@ -54,7 +54,7 @@ $(function() {
         $('.form__message').val("");
     })
     .fail(function() {
-      alert('errdsfgfgsor');
+      alert('error');
       $('.submit-btn').prop('disabled', false);
     })
     $('#new_message')[0].reset();
