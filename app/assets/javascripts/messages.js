@@ -19,12 +19,7 @@ $(function() {
                      ${img}
                  </div>
                 </div>`;
-
-  console.log(message.user_name);
-  console.log(message.created_at);
-  console.log(message.content);
-
-  return html;
+    return html;
   }
 
   //メッセージの非同期通信
@@ -32,9 +27,6 @@ $(function() {
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action');
-
-    console.log(url);
-
 
     $.ajax({
      url: url,
@@ -44,15 +36,15 @@ $(function() {
      processData: false,
      contentType: false
     })
+
     .done(function(data) {
-      /*data.forEach(function(message){*/
-        var html = buildHTML(data);
-        $('.messages').append(html);
-        $('#new_message')[0].reset()
-        $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
-        $('.form__submit').prop('disabled',false);
-        $('.form__message').val("");
+      var html = buildHTML(data);
+      $('.messages').append(html);
+      $('#new_message')[0].reset()
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight }, 'fast');
+      $('.form__submit').prop('disabled',false);
     })
+
     .fail(function() {
       alert('error');
       $('.submit-btn').prop('disabled', false);
