@@ -1,4 +1,4 @@
-@import "./reset";
+ @import "./reset";
 
 @import "font-awesome";
 @import "config/colors";
@@ -6,8 +6,4 @@
 @import "modules/user";
 @import "modules/chat";
 @import "modules/side_bar";
-/* @import "config/size"; */
-/* @import "config/reset";
-@import "mixins/mixin";
-@import "mixins/vendor_prefix"; */
-/*@import "messages/messages.scss" */
+@import "./messages.scss"
