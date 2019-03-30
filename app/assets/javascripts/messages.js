@@ -79,7 +79,6 @@ $(function() {
     if (window.location.href.match(/\/groups\/\d+\/messages/)) {
       var message_id = $('.message:last').attr('id');
       var href = window.location.href;
-      console.log(message_id);
       $.ajax({
         url: href,
         type: 'GET',
@@ -89,9 +88,7 @@ $(function() {
       .done(function(data){
         var insertHtml = '';
         if($.isEmptyObject(data)){
-          console.log("rootend")
         }else{
-          console.log("elseroot")
           data.forEach(function(message){
             insertHtml = buildHTML(message);
           });
