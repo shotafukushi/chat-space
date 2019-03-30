@@ -4,10 +4,9 @@ class MessagesController < ApplicationController
  def index
     @message = Message.new
     @messages = @group.messages.includes(:user)
-    latest_message_info = params[:id] unless params[:id].nil?
     respond_to do |format|
       format.html
-      format.json{ @new_messages = @messages.where('id > ?', latest_message_info) }
+      format.json{ @new_messages = @messages.where('id > ?', params[:id]) }
     end
   end
 
@@ -15,7 +14,7 @@ class MessagesController < ApplicationController
     @message = @group.messages.new(message_params)
     if @message.save
        respond_to do |format|
-        format.html { redirect_to group_messages_path(@group), notice: 'メッセージが送信されました' }
+        format.html
          format.json
       end
     else
