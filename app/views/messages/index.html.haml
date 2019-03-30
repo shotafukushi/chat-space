@@ -22,7 +22,7 @@
         .chatbar__top__left__member
           = current_user.name
       .chatbar__top__right
-        = link_to new_group_path do
+        = link_to edit_group_path(@group) do
           %button
             Edit
     .messages
