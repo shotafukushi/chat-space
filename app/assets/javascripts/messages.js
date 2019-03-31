@@ -38,7 +38,7 @@ $(function() {
     e.preventDefault();
 
     if (nullCheck() == false){
-      window.alert("文字を入力してください");
+      alert("文字を入力してください");
       return false;
     }
 
