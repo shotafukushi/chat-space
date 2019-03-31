@@ -3,7 +3,7 @@ $(function() {
   function buildHTML(message){
     img = message.image ? `<img src = "${message.image}" class = "lower-message__image">`:"";
 
-    var html = `<div class="message">
+    var html = `<div class="message" id="${message.id}">
                  <div class="upper-message">
                   <div class="upper-message__user-name">
                     ${ message.user_name}
@@ -22,9 +22,26 @@ $(function() {
     return html;
   }
 
+  function nullCheck(){
+    var check = true;
+    var text = $('.form__message').val().trim();
+    var image = $('.hidden').val().trim();
+
+    if(text == "" && image == ""){
+      check = false;
+    }
+    return check;
+  }
+
   //メッセージの非同期通信
   $('#new_message').on('submit', function(e){
     e.preventDefault();
+
+    if (nullCheck() == false){
+      alert("文字を入力してください");
+      return false;
+    }
+
     var formData = new FormData(this);
     var url = $(this).attr('action');
 
@@ -50,6 +67,36 @@ $(function() {
       $('.submit-btn').prop('disabled', false);
     })
     $('#new_message')[0].reset();
-    return false;
   })
+
+  //自動更新
+  setInterval(updateMessage, 5000);
+
+  function updateMessage(){
+    if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      var message_id = $('.message:last').attr('id');
+      var href = window.location.href;
+      $.ajax({
+        url: href,
+        type: 'GET',
+        data: { id: message_id },
+        dataType: 'json'
+      })
+      .done(function(data){
+        var insertHtml = '';
+        if($.isEmptyObject(data)){
+        }else{
+          data.forEach(function(message){
+            insertHtml = buildHTML(message);
+          });
+          $('.messages').append(insertHtml).animate({scrollTop:$('.messages')[0].scrollHeight});
+        }
+      })
+      .fail(function(){
+        alert('自動更新に失敗しました');
+      });
+    } else {
+      clearInterval(update);
+    }
+  };
 });
