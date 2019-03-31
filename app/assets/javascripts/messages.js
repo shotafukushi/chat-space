@@ -67,13 +67,10 @@ $(function() {
       $('.submit-btn').prop('disabled', false);
     })
     $('#new_message')[0].reset();
-    return false;
   })
 
   //自動更新
-  $(function(){
-    setInterval(updateMessage, 5000);
-  });
+  setInterval(updateMessage, 5000);
 
   function updateMessage(){
     if (window.location.href.match(/\/groups\/\d+\/messages/)) {
