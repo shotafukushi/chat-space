@@ -63,3 +63,7 @@ gem 'mini_magick'
 group :development do
   gem 'devise'
 end
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
