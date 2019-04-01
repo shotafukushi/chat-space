@@ -59,10 +59,7 @@ gem 'erb2haml'
 gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'mini_magick'
-
-group :development do
-  gem 'devise'
-end
+gem 'devise'
 
 group :production do
   gem 'unicorn', '5.4.1'
